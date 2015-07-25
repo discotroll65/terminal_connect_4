@@ -9,7 +9,8 @@ class Board
     upright: [-1, 1],
     downleft: [1,-1],
     upleft: [-1, -1],
-    downright: [1, 1]
+    downright: [1, 1],
+    down: [1, 0]
   }
 
   def initialize (options = {:row => 6, :col => 7, :win_size => 4})
@@ -89,6 +90,12 @@ class Board
     sum_upleft = probe(:downright, pos, color)
 
     sum_upleft + sum_downright == win_size - 1
+  end
+
+  def check_vert(pos, color)
+    sum_down = probe(:down, pos, color)
+
+    sum_down == win_size - 1
   end
 
   def probe(dir, pos, color)
