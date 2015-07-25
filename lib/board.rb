@@ -63,12 +63,8 @@ class Board
     return false unless self[row,col]
     color = self[row, col].color
 
-    result =  check_ho(pos, color)
-
-    #check_vert(pos, color)
-    #check_positive_diag(pos, color)
-    #check_negative_diag(pos, color)
-    result ? (puts "won!") : (puts "nope")
+    check_ho(pos, color) || check_vert(pos, color) || 
+      check_positive_diag(pos, color) || check_negative_diag(pos, color)
   end
 
   def check_ho(pos, color)
@@ -122,6 +118,16 @@ class Board
 
   def is_full?(col_num)
     !!self[0,col_num] 
+  end
+
+  def board_full?
+    i = 0
+    while i < grid[0].length
+      return false if !grid[0][i]
+      i += 1
+    end
+
+    true
   end
 
 end
