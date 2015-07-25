@@ -1,4 +1,5 @@
 require 'colorize'
+require_relative 'piece.rb'
 class Board
   attr_reader :grid
   def initialize (options = {:row => 6, :col => 7})
@@ -21,10 +22,31 @@ class Board
     end
 
     puts rendered_rows.join('')
+    puts
+    puts
   end
 
   def [](x, y)
     grid[x][y]
+  end
+
+  def []= (x, y, piece)
+    grid[x][y] = piece
+  end
+
+  def move(col_num, piece)
+    raise "Column full!" if is_full?(col_num)
+    grid.length.times do |i|
+      if i == grid.length - 1 || !self[i + 1, col_num].nil?
+        self[i, col_num] = piece
+        render
+        return
+      end
+    end
+  end
+
+  def is_full?(col_num)
+    !self[0,col_num].nil? 
   end
 
 end
