@@ -7,5 +7,8 @@ To run, clone the repo:
 Then go to the directory:
 ```$ cd terminal_connect_4```
 
+Install the required gems:
+```$ bundle_install```
+
 and run the game file:
 ```$ ruby lib/game.rb```
