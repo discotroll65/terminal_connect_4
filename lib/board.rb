@@ -77,6 +77,20 @@ class Board
     sum_right + sum_left == win_size - 1 
   end
 
+  def check_positive_diag(pos, color)
+    sum_upright = probe(:upright, pos, color)
+    sum_downleft = probe(:downleft, pos, color)
+
+    sum_upright + sum_downleft == win_size - 1
+  end
+  
+  def check_negative_diag(pos, color)
+    sum_downright = probe(:upleft, pos, color)
+    sum_upleft = probe(:downright, pos, color)
+
+    sum_upleft + sum_downright == win_size - 1
+  end
+
   def probe(dir, pos, color)
     row, col = pos
     count = 0
